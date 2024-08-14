@@ -1,0 +1,39 @@
+{
+	"author": {
+		"email": "giovanni.calo@live.it",
+		"name": "Giovanni Calò",
+		"url": "https://github.com/giovannicalo"
+	},
+	"bugs": {
+		"url": "https://github.com/giovannicalo/node-clipboard/issues"
+	},
+	"dependencies": {
+		"bindings": "^1.5.0",
+		"cmake-js": "^7.3.0",
+		"node-addon-api": "^8.1.0"
+	},
+	"description": "Clipboard",
+	"devDependencies": {
+		"eslint": "^8.57.0",
+		"eslint-config-giovanni": "giovannicalo/eslint-config"
+	},
+	"engines": {
+		"node": ">=22.6.0"
+	},
+	"homepage": "https://github.com/giovannicalo/node-clipboard",
+	"keywords": ["clipboard", "native", "windows"],
+	"license": "MIT",
+	"main": "source/index.js",
+	"name": "clipboard",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/giovannicalo/node-clipboard.git"
+	},
+	"scripts": {
+		"build": "cmake-js compile",
+		"build-debug": "cmake-js compile --debug",
+		"install": "npm run build",
+		"lint": "eslint -f pretty ."
+	},
+	"version": "0.0.0"
+}
