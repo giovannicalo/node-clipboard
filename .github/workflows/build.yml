@@ -1,0 +1,22 @@
+jobs:
+  build:
+    name: Build
+    runs-on: windows-2022
+    steps:
+    - name: Install Node
+      uses: actions/setup-node@v4.0.1
+      with:
+        node-version: 22.6.0
+    - name: Configure Git
+      run: git config --global core.autocrlf input
+    - name: Checkout code
+      uses: actions/checkout@v4.1.1
+    - name: Install dependencies
+      run: npm install --no-fund --no-save
+    - name: Lint
+      run: npm run lint
+name: Build
+on:
+- pull_request
+- push
+- workflow_dispatch

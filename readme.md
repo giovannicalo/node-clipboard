@@ -1,5 +1,7 @@
 # Node Clipboard
 
+[![Build Status](https://github.com/giovannicalo/node-clipboard/actions/workflows/build.yml/badge.svg)](https://github.com/giovannicalo/node-clipboard/actions/workflows/build.yml)
+
 ## Prerequisites
 
 * [CMake](https://cmake.org) >= 3.21.0
