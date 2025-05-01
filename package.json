@@ -18,7 +18,7 @@
 		"eslint-config-giovanni": "giovannicalo/eslint-config"
 	},
 	"engines": {
-		"node": ">=22.6.0"
+		"node": ">=23.11.0"
 	},
 	"homepage": "https://github.com/giovannicalo/node-clipboard",
 	"keywords": ["clipboard", "native", "windows"],
