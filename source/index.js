@@ -6,16 +6,39 @@ const InternalClipboard = bindings("node-clipboard");
 
 class Clipboard extends EventEmitter {
 
-	// eslint-disable-next-line no-unused-private-class-members
 	#instance = null;
 
 	constructor() {
 		super();
-		this.#instance = new InternalClipboard((data) => {
-			this.emit("data", data);
-		});
+		this.on("newListener", this.#start);
+		this.on("removeListener", this.#stop);
+	}
+
+	#emit = (data) => {
+		this.emit("data", data);
+	};
+
+	#start(event) {
+		if (this.#instance || event !== "data") {
+			return;
+		}
+		this.#instance = new InternalClipboard(this.#emit);
+	}
+
+	#stop(event) {
+		if (event !== "data" || this.listenerCount("data")) {
+			return;
+		}
+		this.stop();
+	}
+
+	stop() {
+		this.#instance?.stop();
+		this.#instance = null;
 	}
 
 }
 
-module.exports = new Clipboard();
+const clipboard = new Clipboard();
+
+module.exports = clipboard;

@@ -1,9 +1,16 @@
+#include <cstdint>
+
+#ifdef _WIN32
+	#include <Windows.h>
+	#include <immintrin.h>
+#endif
+
 #include "image.hpp"
 
 namespace nodeClipboard {
 
 	Image::Image(void* bitmap) {
-		#ifdef WIN32
+		#ifdef _WIN32
 			BITMAPINFOHEADER header = static_cast<BITMAPINFO*>(bitmap)->bmiHeader;
 			uint8_t* inputData = static_cast<uint8_t*>(bitmap) + sizeof(BITMAPINFOHEADER) + (
 				header.biCompression == BI_BITFIELDS ? 3 * sizeof(RGBQUAD) : 0

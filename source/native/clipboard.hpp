@@ -1,12 +1,15 @@
 #pragma once
 
+#include <condition_variable>
+#include <mutex>
+
 #include <napi.h>
 
-#ifdef WIN32
+#ifdef _WIN32
+	#define NOMINMAX
+	#define WIN32_LEAN_AND_MEAN
 	#include <Windows.h>
 #endif
-
-#include "image.hpp"
 
 namespace nodeClipboard {
 
@@ -16,17 +19,25 @@ namespace nodeClipboard {
 
 			Napi::ThreadSafeFunction callback;
 
-			std::atomic<bool> isAlive = true;
+			std::condition_variable condition;
+
+			#ifdef _WIN32
+				DWORD id = 0;
+			#endif
 
 			void loop();
 
-			std::unique_ptr<std::jthread> thread;
+			std::mutex mutex;
+
+			std::jthread thread;
 
 		public:
 
 			Clipboard(const Napi::CallbackInfo& info);
 
 			static Napi::Function initialize(Napi::Env environment);
+
+			void stop(const Napi::CallbackInfo& info);
 
 	};
 

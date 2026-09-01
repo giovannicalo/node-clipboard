@@ -2,11 +2,6 @@
 
 #include <cstdint>
 
-#ifdef WIN32
-	#include <Windows.h>
-	#include <immintrin.h>
-#endif
-
 namespace nodeClipboard {
 
 	class Image {
